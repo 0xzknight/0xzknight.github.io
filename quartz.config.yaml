@@ -256,16 +256,27 @@ layout:
         right: []
     content:
       positions:
-        right: []                  # ОЧИЩЕНО ДЛЯ КОНТЕНТА
+        left:
+          - page-title
+          - search
+          - darkmode
+          - explorer
+        beforeBody:
+          - breadcrumbs
+          - article-title
+          - content-meta
+          - tag-list
+          - recent-notes
+        right: [] # Правая колонка пустая — граф и бэклинки убраны
     folder:
       exclude:
         - reader-mode
       positions:
-        right: []                  # ОЧИЩЕНО ДЛЯ ПАПОК
+        right: []
     tag:
       exclude:
         - reader-mode
       positions:
-        right: []                  # ОЧИЩЕНО ДЛЯ ТЕГОВ
+        right: []
     canvas: {}
     bases: {}

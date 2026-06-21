@@ -1,29 +1,6 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
-// Убираем сетку с тремя колонками, делаем две
-.page {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  max-width: 1200px;
-  margin: 0 auto;
-  gap: 3rem;
-  padding: 2rem;
-}
-
-@media (max-width: 800px) {
-  .page {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}
-
-// Левый сайдбар без рамок, чистый монохром
-.sidebar.left {
-  border-right: none;
-  padding-right: 1rem;
-}
-
 // Карточки для списка заметок (Recent Notes на главной)
 .recent-notes .recent-notes-list li {
   background: #121212 !important;
@@ -45,4 +22,10 @@
     color: #ffffff !important;
     text-decoration: none !important;
   }
+}
+
+// Фикс отображения контента, чтобы он не сжимался
+.main {
+  width: 100% !important;
+  max-width: 800px !important;
 }
