@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Quartz 5
+  pageTitle: oxbyte
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
@@ -31,15 +31,15 @@ configuration:
         highlight: rgba(143, 159, 169, 0.15)
         textHighlight: "#fff23688"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#0a0a0a"          # Глубокий черный фон страницы
+        lightgray: "#161616"      # Фон для карточек и рамок
+        gray: "#8c8c8c"           # Цвет дат и второстепенного текста
+        darkgray: "#e0e0e0"       # Основной цвет текста заметок
+        darkgrey: "#ffffff"       # Заголовки
+        purple: "#a855f7"         # Акценты
+        secondary: "#ffffff"      # Название блога
+        tertiary: "#3b82f6"       # Ховеры
+        highlight: "rgba(255, 255, 255, 0.05)"
 plugins:
   - source: github:quartz-community/created-modified-date
     enabled: true
@@ -71,8 +71,8 @@ plugins:
     enabled: true
     order: 50
     layout:
-      position: right
-      priority: 30
+      position: left               # ПЕРЕНЕСЕНО СЕЙДБАР СЛЕВА
+      priority: 60
   - source: github:quartz-community/crawl-links
     enabled: true
     options:
@@ -148,10 +148,7 @@ plugins:
       position: left
       priority: 50
   - source: github:quartz-community/graph
-    enabled: true
-    layout:
-      position: right
-      priority: 10
+    enabled: false                 # ОТКЛЮЧЕНО (УБРАН ГРАФ СВЕРХУ СПРАВА)
   - source: github:quartz-community/search
     enabled: true
     layout:
@@ -161,10 +158,7 @@ plugins:
       groupOptions:
         grow: true
   - source: github:quartz-community/backlinks
-    enabled: true
-    layout:
-      position: right
-      priority: 50
+    enabled: false                 # ОТКЛЮЧЕНО (УБРАНЫ ССЫЛКИ СПРАВА)
   - source: github:quartz-community/article-title
     enabled: true
     layout:
@@ -176,7 +170,7 @@ plugins:
       position: beforeBody
       priority: 20
   - source: github:quartz-community/tag-list
-    enabled: false
+    enabled: true                  # ВКЛЮЧЕНО ДЛЯ ТЕГОВ СЛОЖНОСТИ/ОС
     layout:
       position: beforeBody
       priority: 30
@@ -205,20 +199,20 @@ plugins:
       condition: not-index
   - source: github:quartz-community/comments
     enabled: false
-    options:
-      provider: giscus
-      options: {}
-    layout:
-      position: afterBody
-      priority: 10
   - source: github:quartz-community/footer
     enabled: true
     options:
       links:
-        GitHub: https://github.com/jackyzha0/quartz
-        Discord Community: https://discord.gg/cRFFHYye7t
+        GitHub: https://github.com/0xzknight
   - source: github:quartz-community/recent-notes
-    enabled: false
+    enabled: true                  # ВКЛЮЧЕНО ДЛЯ СПИСКА СТАТЕЙ НА ГЛАВНОЙ
+    options:
+      showTags: true
+      title: HTB
+      limit: 20
+    layout:
+      position: beforeBody
+      priority: 40
   - source: github:quartz-community/spacer
     enabled: true
     options: {}
@@ -260,16 +254,18 @@ layout:
         beforeBody: []
         left: []
         right: []
-    content: {}
+    content:
+      positions:
+        right: []                  # ОЧИЩЕНО ДЛЯ КОНТЕНТА
     folder:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right: []                  # ОЧИЩЕНО ДЛЯ ПАПОК
     tag:
       exclude:
         - reader-mode
       positions:
-        right: []
+        right: []                  # ОЧИЩЕНО ДЛЯ ТЕГОВ
     canvas: {}
     bases: {}

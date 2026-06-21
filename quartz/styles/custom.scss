@@ -1,3 +1,48 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+// Убираем сетку с тремя колонками, делаем две
+.page {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 3rem;
+  padding: 2rem;
+}
+
+@media (max-width: 800px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+// Левый сайдбар без рамок, чистый монохром
+.sidebar.left {
+  border-right: none;
+  padding-right: 1rem;
+}
+
+// Карточки для списка заметок (Recent Notes на главной)
+.recent-notes .recent-notes-list li {
+  background: #121212 !important;
+  border: 1px solid #1c1c1c !important;
+  border-radius: 8px !important;
+  padding: 1.5rem !important;
+  margin-bottom: 1rem !important;
+  list-style: none !important;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: #3b82f6 !important;
+    transform: translateY(-2px);
+  }
+
+  a {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+}
