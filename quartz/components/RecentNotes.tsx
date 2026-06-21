@@ -14,8 +14,14 @@ const defaultOptions: Options = {
 export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOptions, ...userOpts }
   const RecentNotes: QuartzComponent = ({ allFiles, fileData, displayClass }: QuartzComponentProps) => {
+    // Строгий фильтр: исключаем папки, теги, 404 и файлы без валидного title во frontmatter
     const pages = allFiles
-      .filter((p) => p.slug && !p.slug.startsWith("tags/") && p.slug !== "index")
+      .filter((p) => {
+        const hasTitle = p.frontmatter?.title && p.frontmatter.title.trim() !== ""
+        const isNotSpecial = !p.slug?.startsWith("tags/") && p.slug !== "index" && p.slug !== "404"
+        const isNotUntitled = p.frontmatter?.title?.toLowerCase() !== "untitled"
+        return hasTitle && isNotSpecial && isNotUntitled
+      })
       .sort((a, b) => {
         const dateA = new Date(a.frontmatter?.date ?? 0).getTime()
         const dateB = new Date(b.frontmatter?.date ?? 0).getTime()
@@ -27,7 +33,7 @@ export default ((userOpts?: Partial<Options>) => {
       <div class={`recent-notes ${displayClass ?? ""}`}>
         <ul class="recent-notes-list">
           {pages.map((page) => {
-            const title = page.frontmatter?.title ?? page.slug
+            const title = page.frontmatter!.title
             const date = page.frontmatter?.date
               ? new Date(page.frontmatter.date).toLocaleDateString("en-US", {
                   year: "numeric",

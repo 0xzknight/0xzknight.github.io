@@ -200,7 +200,7 @@ plugins:
   - source: github:quartz-community/comments
     enabled: false
   - source: github:quartz-community/footer
-    enabled: true
+    enabled: false
     options:
       links:
         GitHub: https://github.com/0xzknight
