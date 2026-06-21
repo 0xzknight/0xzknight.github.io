@@ -1,8 +1,6 @@
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
-import { FullPageLayout } from "../cfg"
 import SimpleClean from "./styles/recentNotes.scss"
-import { joinSegments, resolveRelative } from "../util/path"
-import { i18n } from "../i18n"
+import { resolveRelative } from "../util/path"
 
 interface Options {
   title?: string
@@ -15,7 +13,7 @@ const defaultOptions: Options = {
 
 export default ((userOpts?: Partial<Options>) => {
   const opts = { ...defaultOptions, ...userOpts }
-  const RecentNotes: QuartzComponent = ({ allFiles, fileData, displayClass, cfg }: QuartzComponentProps) => {
+  const RecentNotes: QuartzComponent = ({ allFiles, fileData, displayClass }: QuartzComponentProps) => {
     const pages = allFiles
       .filter((p) => p.slug && !p.slug.startsWith("tags/") && p.slug !== "index")
       .sort((a, b) => {
@@ -27,7 +25,6 @@ export default ((userOpts?: Partial<Options>) => {
 
     return (
       <div class={`recent-notes ${displayClass ?? ""}`}>
-        <h3>{opts.title ?? "Recent Notes"}</h3>
         <ul class="recent-notes-list">
           {pages.map((page) => {
             const title = page.frontmatter?.title ?? page.slug

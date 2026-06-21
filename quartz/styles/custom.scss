@@ -1,31 +1,38 @@
-@use "./variables.scss" as *;
-
-// put your custom CSS here!
-// Карточки для списка заметок (Recent Notes на главной)
-.recent-notes .recent-notes-list li {
-  background: #121212 !important;
-  border: 1px solid #1c1c1c !important;
-  border-radius: 8px !important;
-  padding: 1.5rem !important;
-  margin-bottom: 1rem !important;
-  list-style: none !important;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    border-color: #3b82f6 !important;
-    transform: translateY(-2px);
-  }
-
-  a {
-    font-size: 1.25rem !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    text-decoration: none !important;
-  }
+// Два цвета фона и жесткие границы
+html, body {
+  background-color: #000000 !important; // Внешний фон
 }
 
-// Фикс отображения контента, чтобы он не сжимался
-.main {
-  width: 100% !important;
-  max-width: 800px !important;
+.page {
+  background-color: #000000 !important;
+}
+
+// Левый контейнер (сайдбар)
+.sidebar.left {
+  background-color: #0a0a0a !important;
+  border: 1px solid #1c1c1c !important;
+  border-radius: 12px;
+  padding: 2rem !important;
+  height: fit-content;
+}
+
+// Центральный контейнер контента
+.center {
+  background-color: #0a0a0a !important;
+  border: 1px solid #1c1c1c !important;
+  border-radius: 12px;
+  padding: 2.5rem !important;
+}
+
+// Полностью вырезаем интерактивные кнопки тегов Quartz в статьях
+.tags, .tag-link, a.tag {
+  display: none !important;
+}
+
+// Убираем подчеркивания ссылок для сохранения строгого стиля
+.center a {
+  text-decoration: none !important;
+  &:hover {
+    color: #3b82f6 !important;
+  }
 }
