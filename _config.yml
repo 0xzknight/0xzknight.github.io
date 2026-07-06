@@ -1,6 +1,6 @@
-title: nick hacks stuff
+title: 0xzknight hacks stuff
 description: CTF write-ups, пентест, red team заметки
-url: "https://nick.github.io"    # заменишь на свой домен/username
+url: "https://0xzknight.github.io"    # заменишь на свой домен/username
 baseurl: ""
 
 remote_theme: just-the-docs/just-the-docs
@@ -21,7 +21,7 @@ search:
 # Верхнее меню (Home / About / Tags / Cheatsheets / feed)
 nav_external_links:
   - title: GitHub
-    url: https://github.com/nick
+    url: https://github.com/0xzknight
     hide_icon: false
   - title: feed
     url: /feed.xml
@@ -29,7 +29,7 @@ nav_external_links:
 
 aux_links:
   "GitHub":
-    - "https://github.com/nick"
+    - "https://github.com/0xzknight"
 
 aux_links_new_tab: true
 
