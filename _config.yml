@@ -1,0 +1,64 @@
+title: nick hacks stuff
+description: CTF write-ups, пентест, red team заметки
+url: "https://nick.github.io"    # заменишь на свой домен/username
+baseurl: ""
+
+remote_theme: just-the-docs/just-the-docs
+
+color_scheme: dark
+
+# Включаем поиск (как у 0xdf в правом верхнем углу)
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 3
+  preview_words_before: 5
+  preview_words_after: 10
+  tokenizer_separator: /[\s/]+/
+  rel_url: true
+  button: true
+
+# Верхнее меню (Home / About / Tags / Cheatsheets / feed)
+nav_external_links:
+  - title: GitHub
+    url: https://github.com/nick
+    hide_icon: false
+  - title: feed
+    url: /feed.xml
+    hide_icon: false
+
+aux_links:
+  "GitHub":
+    - "https://github.com/nick"
+
+aux_links_new_tab: true
+
+# Коллекция write-up'ов — аналог _posts, но с деревом навигации как в cheatsheets
+collections:
+  posts:
+    permalink: "/writeups/:year/:month/:day/:title/"
+  cheatsheets:
+    output: true
+    permalink: "/cheatsheets/:path/"
+
+defaults:
+  - scope:
+      path: ""
+      type: "cheatsheets"
+    values:
+      layout: default
+      nav_enabled: true
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Дерево навигации в сайдбаре строится автоматически из front matter
+# каждой страницы (parent / grand_parent / nav_order) — см. пример
+# в cheatsheets/chisel.md
