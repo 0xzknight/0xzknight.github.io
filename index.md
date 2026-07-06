@@ -4,7 +4,7 @@ title: Home
 nav_order: 1
 ---
 
-# nick hacks stuff
+# 0xzknight hacks stuff
 
 Пентест, CTF write-up'ы (HackTheBox, TryHackMe), заметки по red team.
 
