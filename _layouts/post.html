@@ -9,9 +9,6 @@ tail_includes:
   - comments
 ---
 
-{% include lang.html %}
-{% include origin-type.html %}
-
 <article class="px-1">
   <header>
     <h1 data-toc-skip>{{ page.title }}</h1>
@@ -21,25 +18,27 @@ tail_includes:
     {% endif %}
 
     <div class="post-meta text-muted">
-      <div class="d-flex justify-content-between">
-        <span>
-          {% include author.html %}
-          {% include readtime.html %}
+      <div class="d-flex align-items-center gap-3 flex-wrap mb-2">
+        <span class="dt-published">
+          <i class="bi bi-calendar3 me-1"></i>
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%b %d, %Y" }}
+          </time>
         </span>
       </div>
 
-      <div class="mt-3 mb-3 tags">
-        {% include post-tags.html %}
+      {% if page.tags.size > 0 %}
+      <div class="mt-1 mb-2 tags">
+        {% for tag in page.tags %}
+        <a href="{{ '/tags/' | append: tag | relative_url }}" class="post-tag me-1">{{ tag }}</a>
+        {% endfor %}
       </div>
+      {% endif %}
     </div>
   </header>
 
   <div class="content">
     {% include box-info.html %}
     {{ content }}
-  </div>
-
-  <div class="post-tail-wrapper text-muted">
-    {% include post-sharing.html %}
   </div>
 </article>
