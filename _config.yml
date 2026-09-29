@@ -1,64 +1,62 @@
 title: 0xzknight hacks stuff
 description: CTF write-ups, пентест, red team заметки
-url: "https://0xzknight.github.io"    # заменишь на свой домен/username
+url: "https://0xzknight.github.io"
 baseurl: ""
+author: 0xzknight
+email: ""
 
-remote_theme: just-the-docs/just-the-docs
+# Кастомная тема — без remote_theme
+# Все layouts и includes в проекте
 
-color_scheme: dark
+permalink: /posts/:year/:month/:day/:title/
 
-# Включаем поиск (как у 0xdf в правом верхнем углу)
-search_enabled: true
-search:
-  heading_level: 2
-  previews: 3
-  preview_words_before: 5
-  preview_words_after: 10
-  tokenizer_separator: /[\s/]+/
-  rel_url: true
-  button: true
-
-# Верхнее меню (Home / About / Tags / Cheatsheets / feed)
-nav_external_links:
-  - title: GitHub
-    url: https://github.com/0xzknight
-    hide_icon: false
-  - title: feed
-    url: /feed.xml
-    hide_icon: false
-
-aux_links:
-  "GitHub":
-    - "https://github.com/0xzknight"
-
-aux_links_new_tab: true
-
-# Коллекция write-up'ов — аналог _posts, но с деревом навигации как в cheatsheets
+# Коллекции
 collections:
-  posts:
-    permalink: "/writeups/:year/:month/:day/:title/"
   cheatsheets:
     output: true
-    permalink: "/cheatsheets/:path/"
+    permalink: /cheatsheets/:path/
 
 defaults:
   - scope:
       path: ""
-      type: "cheatsheets"
-    values:
-      layout: default
-      nav_enabled: true
-  - scope:
-      path: ""
-      type: "posts"
+      type: posts
     values:
       layout: post
+  - scope:
+      path: ""
+      type: cheatsheets
+    values:
+      layout: cheatsheet
 
+# Плагины (работают через GitHub Actions, не ограничены safe mode)
 plugins:
-  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-seo-tag
 
-# Дерево навигации в сайдбаре строится автоматически из front matter
-# каждой страницы (parent / grand_parent / nav_order) — см. пример
-# в cheatsheets/chisel.md
+# Автогенерация страниц тегов
+jekyll-archives:
+  enabled:
+    - tags
+  layout: tag
+  permalinks:
+    tag: /tags/:name/
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: "highlight"
+    block:
+      line_numbers: false
+
+# Исключения
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
+  - "*.zip"

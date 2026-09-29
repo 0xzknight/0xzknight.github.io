@@ -1,0 +1,60 @@
+{% if page.os or page.difficulty or page.htb_ip or page.htb_img %}
+<div class="box-info">
+  {% if page.htb_img %}
+  <div class="box-img">
+    <img src="{{ page.htb_img | relative_url }}" alt="{{ page.title }}" loading="lazy">
+  </div>
+  {% endif %}
+  <div class="box-details">
+    {% if page.os %}
+    <div class="box-detail">
+      <span class="detail-label">OS</span>
+      <span class="detail-value">
+        <span class="os-badge os-{{ page.os | downcase }}">
+          {% if page.os == "Linux" %}🐧{% elsif page.os == "Windows" %}🪟{% elsif page.os == "FreeBSD" %}😈{% endif %}
+          {{ page.os }}
+        </span>
+      </span>
+    </div>
+    {% endif %}
+    {% if page.difficulty %}
+    <div class="box-detail">
+      <span class="detail-label">Difficulty</span>
+      <span class="detail-value">
+        <span class="difficulty-badge diff-{{ page.difficulty | downcase }}">{{ page.difficulty }}</span>
+      </span>
+    </div>
+    {% endif %}
+    {% if page.htb_ip %}
+    <div class="box-detail">
+      <span class="detail-label">IP</span>
+      <span class="detail-value"><code>{{ page.htb_ip }}</code></span>
+    </div>
+    {% endif %}
+    {% if page.htb_points %}
+    <div class="box-detail">
+      <span class="detail-label">Points</span>
+      <span class="detail-value">{{ page.htb_points }}</span>
+    </div>
+    {% endif %}
+    {% if page.htb_rating %}
+    <div class="box-detail">
+      <span class="detail-label">Rating</span>
+      <span class="detail-value">
+        {% assign rating_int = page.htb_rating | round %}
+        {% for i in (1..5) %}
+          {% if i <= rating_int %}★{% else %}☆{% endif %}
+        {% endfor %}
+        ({{ page.htb_rating }})
+      </span>
+    </div>
+    {% endif %}
+    {% if page.htb_retired %}
+    <div class="box-detail">
+      <span class="detail-label">Retired</span>
+      <span class="detail-value">{{ page.htb_retired }}</span>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}

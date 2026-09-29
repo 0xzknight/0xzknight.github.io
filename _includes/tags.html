@@ -1,0 +1,37 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+---
+
+<h1>Tags</h1>
+
+{% assign all_tags = site.posts | map: 'tags' | join: ',' | split: ',' | uniq | sort %}
+
+<div class="tag-cloud">
+{% for tag in all_tags %}
+  {% assign count = 0 %}
+  {% for post in site.posts %}
+    {% if post.tags contains tag %}{% assign count = count | plus: 1 %}{% endif %}
+  {% endfor %}
+  <a href="{{ site.baseurl }}/tags/{{ tag | downcase | replace: ' ', '-' | replace: '_', '-' }}/" class="tag">{{ tag }} ({{ count }})</a>
+{% endfor %}
+</div>
+
+<hr>
+
+{% for tag in all_tags %}
+<div class="all-tags-section">
+  <h2><a href="{{ site.baseurl }}/tags/{{ tag | downcase | replace: ' ', '-' | replace: '_', '-' }}/">#{{ tag }}</a></h2>
+  <ul class="tag-post-list">
+    {% for post in site.posts %}
+      {% if post.tags contains tag %}
+      <li>
+        <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}
