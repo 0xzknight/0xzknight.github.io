@@ -1,64 +1,66 @@
-title: 0xzknight hacks stuff
-description: CTF write-ups, пентест, red team заметки
-url: "https://0xzknight.github.io"    # заменишь на свой домен/username
+title: zknight
+tagline: "HTB writeups · pentest notes · cheatsheets"
+description: "Security research blog — HackTheBox writeups, cheatsheets, and pentest notes."
+url: "https://0xzknight.github.io"
 baseurl: ""
 
-remote_theme: just-the-docs/just-the-docs
+github:
+  username: 0xzknight
 
-color_scheme: dark
+social:
+  name: zknight
+  email: ""
+  links:
+    - https://github.com/0xzknight
 
-# Включаем поиск (как у 0xdf в правом верхнем углу)
-search_enabled: true
-search:
-  heading_level: 2
-  previews: 3
-  preview_words_before: 5
-  preview_words_after: 10
-  tokenizer_separator: /[\s/]+/
-  rel_url: true
-  button: true
+lang: en
+timezone: Asia/Dushanbe
 
-# Верхнее меню (Home / About / Tags / Cheatsheets / feed)
-nav_external_links:
-  - title: GitHub
-    url: https://github.com/0xzknight
-    hide_icon: false
-  - title: feed
-    url: /feed.xml
-    hide_icon: false
+theme: jekyll-theme-chirpy
+theme_mode: dark
 
-aux_links:
-  "GitHub":
-    - "https://github.com/0xzknight"
+avatar: ""
+toc: true
 
-aux_links_new_tab: true
+comments:
+  active: ""
 
-# Коллекция write-up'ов — аналог _posts, но с деревом навигации как в cheatsheets
+paginate: 15
+permalink: /posts/:year/:month/:day/:title/
+
 collections:
-  posts:
-    permalink: "/writeups/:year/:month/:day/:title/"
   cheatsheets:
     output: true
-    permalink: "/cheatsheets/:path/"
+    permalink: /cheatsheets/:path/
 
 defaults:
   - scope:
       path: ""
-      type: "cheatsheets"
-    values:
-      layout: default
-      nav_enabled: true
-  - scope:
-      path: ""
-      type: "posts"
+      type: posts
     values:
       layout: post
+      toc: true
+      comments: false
+  - scope:
+      path: ""
+      type: cheatsheets
+    values:
+      layout: cheatsheet
+      toc: true
+
+jekyll-archives:
+  enabled:
+    - tags
+    - categories
+  layouts:
+    tag: tag
+    category: category
+  permalinks:
+    tag: /tags/:name/
+    category: /categories/:name/
 
 plugins:
-  - jekyll-remote-theme
   - jekyll-feed
   - jekyll-sitemap
-
-# Дерево навигации в сайдбаре строится автоматически из front matter
-# каждой страницы (parent / grand_parent / nav_order) — см. пример
-# в cheatsheets/chisel.md
+  - jekyll-seo-tag
+  - jekyll-archives

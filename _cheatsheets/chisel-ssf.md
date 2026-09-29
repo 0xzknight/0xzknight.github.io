@@ -1,10 +1,8 @@
 ---
-title: SSF
-parent: Chisel
-has_children: true
+title: "SSF"
+group: "Tunneling"
+parent: "Chisel"
 nav_order: 1
 ---
 
-# SSF
-
-SSF использует SSL-шифрованный канал, нужны сертификаты/ключи. Разделы ниже.
+SSF использует SSL-шифрованный канал, нужны сертификаты/ключи.

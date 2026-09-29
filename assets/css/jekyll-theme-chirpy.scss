@@ -1,0 +1,149 @@
+---
+---
+
+@import "main";
+
+/* ── Box Info Card ── */
+
+.box-info-card {
+  display: inline-block;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.box-info-table {
+  margin: 0;
+  border: none;
+  width: auto;
+}
+
+.box-info-table tr { background: transparent !important; }
+
+.box-info-table td {
+  border: none;
+  padding: 0.18rem 0.9rem 0.18rem 0;
+  font-size: 0.875rem;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.bi-label {
+  color: var(--text-muted-color);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-weight: 500;
+  min-width: 78px;
+  white-space: nowrap;
+}
+
+.bi-badge {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Difficulty */
+.bi-diff-easy   { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.bi-diff-medium { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+.bi-diff-hard   { background: rgba(239, 68, 68, 0.12);  color: #ef4444; }
+.bi-diff-insane { background: rgba(139, 92, 246, 0.12); color: #a78bfa; }
+
+/* OS */
+.bi-os-linux   { background: rgba(16, 185, 129, 0.12); color: #10b981; }
+.bi-os-windows { background: rgba(96, 165, 250, 0.12); color: #60a5fa; }
+.bi-os-freebsd { background: rgba(244, 114, 182, 0.12); color: #f472b6; }
+
+/* ── Cheatsheet Layout ── */
+
+#cs-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+#cs-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 4.5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+.cs-nav-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted-color);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.cs-group-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted-color);
+  font-weight: 500;
+  margin: 1rem 0 0.25rem;
+}
+
+#cs-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#cs-sidebar ul ul {
+  padding-left: 0.75rem;
+}
+
+#cs-sidebar li { margin: 0; }
+
+#cs-sidebar a {
+  display: block;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-muted-color);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+#cs-sidebar a:hover { color: var(--link-color); }
+#cs-sidebar a.active {
+  color: var(--link-color);
+  font-weight: 600;
+}
+
+#cs-content {
+  flex: 1;
+  min-width: 0;
+}
+
+#cs-content h1 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+@media (max-width: 767px) {
+  #cs-layout {
+    flex-direction: column;
+  }
+
+  #cs-sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+    border-bottom: 1px solid var(--card-border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}

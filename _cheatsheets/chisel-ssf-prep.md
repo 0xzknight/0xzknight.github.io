@@ -1,11 +1,9 @@
 ---
-title: Prep
-parent: SSF
-grand_parent: Chisel
-nav_order: 1
+title: "SSF: Prep"
+group: "Tunneling"
+parent: "Chisel"
+nav_order: 2
 ---
-
-# Prep
 
 Готовим клиентскую директорию с сертификатами:
 

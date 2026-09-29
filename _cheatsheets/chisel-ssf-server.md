@@ -1,10 +1,8 @@
 ---
-title: Server
-parent: SSF
-grand_parent: Chisel
-nav_order: 2
+title: "SSF: Server"
+group: "Tunneling"
+parent: "Chisel"
+nav_order: 3
 ---
-
-# Server
 
 Запуск SSF-сервера на pivot-хосте (атакующая машина).

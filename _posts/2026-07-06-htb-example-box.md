@@ -1,16 +1,20 @@
 ---
 title: "HTB: Example Box"
-date: 2026-07-06
-tags: [hackthebox, ctf, linux, sqli]
----
+date: 2026-07-06 12:00:00 +0500
+categories: [HackTheBox, Easy]
+tags: [hackthebox, linux, sqli, ctf]
 
-Краткое summary в стиле 0xdf: с чего стартуем, какая техника центральная,
-как получаем foothold и root — в 2-3 предложениях.
+os: Linux
+difficulty: Easy
+htb_release: 2026-01-01
+htb_retire: 2026-07-06
+htb_creator: "example_creator"
+---
 
 ## Recon
 
-```console
-$ nmap -sC -sV -oN nmap/initial 10.10.10.10
+```bash
+nmap -sV -sC -p- --min-rate 5000 10.10.10.10 -oN nmap/initial
 ```
 
 ## Foothold

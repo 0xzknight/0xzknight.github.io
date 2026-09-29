@@ -1,65 +1,48 @@
 ---
 layout: default
 ---
-<div class="cheatsheet-wrapper">
 
-  <aside class="cheatsheet-sidebar">
-    <nav>
-      <div class="nav-title">Cheatsheets</div>
+{% include lang.html %}
+
+<div id="cs-layout">
+  <nav id="cs-sidebar" aria-label="Cheatsheet navigation">
+    <p class="cs-nav-title">Cheatsheets</p>
+
+    {% assign groups = site.cheatsheets | group_by: "group" | sort: "name" %}
+    {% for grp in groups %}
+      {% if grp.name != "" %}
+        <p class="cs-group-title">{{ grp.name }}</p>
+      {% endif %}
+
       <ul>
-        <li><a href="{{ '/cheatsheets/' | relative_url }}">← All Cheatsheets</a></li>
+        {% assign top_items = grp.items | where_exp: "item", "item.parent == nil or item.parent == ''" | sort: "nav_order" %}
+        {% for item in top_items %}
+          <li>
+            <a href="{{ item.url | relative_url }}"
+               {% if page.url == item.url %}class="active"{% endif %}>
+              {{ item.title }}
+            </a>
+            {% assign children = grp.items | where: "parent", item.title | sort: "nav_order" %}
+            {% if children.size > 0 %}
+            <ul>
+              {% for child in children %}
+              <li>
+                <a href="{{ child.url | relative_url }}"
+                   {% if page.url == child.url %}class="active"{% endif %}>
+                  {{ child.title }}
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
       </ul>
-      <hr class="sidebar-hr">
+    {% endfor %}
+  </nav>
 
-      {%- assign all_cs = site.cheatsheets | sort: 'nav_order' -%}
-
-      {%- comment %} Build tree: grand_parents → parents → children {% endcomment %}
-
-      {%- assign grand_parents = "" | split: "" -%}
-      {%- for cs in all_cs -%}
-        {%- if cs.grand_parent == nil and cs.parent == nil and cs.has_children -%}
-          {%- assign grand_parents = grand_parents | push: cs -%}
-        {%- endif -%}
-      {%- endfor -%}
-
-      {%- for gp in grand_parents -%}
-      <div class="sidebar-section">
-        <a href="{{ gp.url | relative_url }}" class="sidebar-group-title">{{ gp.title }}</a>
-        <ul>
-          {%- for cs in all_cs -%}
-            {%- if cs.parent == gp.title and cs.grand_parent == nil -%}
-            <li>
-              <a href="{{ cs.url | relative_url }}"{% if cs.url == page.url %} class="active"{% endif %}>{{ cs.title }}</a>
-              {%- if cs.has_children -%}
-              <ul>
-                {%- for sub in all_cs -%}
-                  {%- if sub.parent == cs.title and sub.grand_parent == gp.title -%}
-                  <li><a href="{{ sub.url | relative_url }}"{% if sub.url == page.url %} class="active"{% endif %}>{{ sub.title }}</a></li>
-                  {%- endif -%}
-                {%- endfor -%}
-              </ul>
-              {%- endif -%}
-            </li>
-            {%- endif -%}
-          {%- endfor -%}
-        </ul>
-      </div>
-      {%- endfor -%}
-    </nav>
-  </aside>
-
-  <div class="cheatsheet-content">
-    {% if page.grand_parent or page.parent %}
-    <nav class="breadcrumb">
-      <a href="{{ '/cheatsheets/' | relative_url }}">Cheatsheets</a>
-      {% if page.grand_parent %}<span> / </span><span>{{ page.grand_parent }}</span>{% endif %}
-      {% if page.parent %}<span> / </span><span>{{ page.parent }}</span>{% endif %}
-      <span> / </span><span class="current">{{ page.title }}</span>
-    </nav>
-    {% endif %}
-
+  <main id="cs-content">
     <h1>{{ page.title }}</h1>
     {{ content }}
-  </div>
-
+  </main>
 </div>

@@ -1,10 +1,8 @@
 ---
-title: Client
-parent: SSF
-grand_parent: Chisel
-nav_order: 3
+title: "SSF: Client"
+group: "Tunneling"
+parent: "Chisel"
+nav_order: 4
 ---
-
-# Client
 
 Подключение клиента SSF к серверу для проброса портов/шелла.
